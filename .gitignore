@@ -33,5 +33,4 @@ build
 # idea
 *.iml
 .idea/
-
-*/target/
+target/
