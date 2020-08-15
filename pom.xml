@@ -9,8 +9,11 @@
     <packaging>pom</packaging>
     <version>0.1.0</version>
     <modules>
-        <module>shit-code-cloud-log</module>
+        <module>shit-code-cloud-logback</module>
         <module>shit-code-cloud-common</module>
+        <module>shit-code-cloud-redis-spring-boot-starter</module>
+        <module>shit-code-cloud-mybatis-spring-boot-starter</module>
+        <module>shit-code-cloud-spring-boot-starter</module>
     </modules>
 
     <properties>
@@ -66,9 +69,22 @@
             <id>github</id>
             <name>GitHub OWNER Apache Maven Packages</name>
             <url>https://maven.pkg.github.com/cd871127/shit-code-cloud-lib</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
 <!--            mvn deploy -Dregistry=https://maven.pkg.github.com/cd871127 -Dtoken=-->
 <!--            https://www.cnblogs.com/aeolian/p/12444569.html-->
         </repository>
     </repositories>
-
+<dependencies>
+    <dependency>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+        <version>1.18.12</version>
+        <scope>compile</scope>
+    </dependency>
+</dependencies>
 </project>
