@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  shit.code.cloud.spring.config.SpringBootAutoConfiguration

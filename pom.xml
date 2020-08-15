@@ -7,7 +7,7 @@
     <groupId>com.shit.code.cloud</groupId>
     <artifactId>shit-code-cloud-lib</artifactId>
     <packaging>pom</packaging>
-    <version>0.1.0</version>
+    <version>0.1.1</version>
     <modules>
         <module>shit-code-cloud-logback</module>
         <module>shit-code-cloud-common</module>
@@ -18,6 +18,8 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <spring.version>5.2.8.RELEASE</spring.version>
+        <spring.boot.version>2.3.2.RELEASE</spring.boot.version>
     </properties>
 
     <build>
@@ -31,17 +33,17 @@
                     <target>8</target>
                 </configuration>
             </plugin>
-<!--            <plugin>-->
-<!--                &lt;!&ndash;mvn deploy -Dregistry=https://maven.pkg.github.com/cd871127 -Dtoken=TOKEN&ndash;&gt;-->
-<!--                <groupId>org.apache.maven.plugins</groupId>-->
-<!--                <artifactId>maven-deploy-plugin</artifactId>-->
-<!--                <version>2.8.2</version>-->
-<!--                &lt;!&ndash;                <configuration>&ndash;&gt;-->
-<!--                &lt;!&ndash;                    <altDeploymentRepository>&ndash;&gt;-->
-<!--                &lt;!&ndash;                        internal.repo::default::https://maven.pkg.github.com/cd871127&ndash;&gt;-->
-<!--                &lt;!&ndash;                    </altDeploymentRepository>&ndash;&gt;-->
-<!--                &lt;!&ndash;                </configuration>&ndash;&gt;-->
-<!--            </plugin>-->
+            <!--            <plugin>-->
+            <!--                &lt;!&ndash;mvn deploy -Dregistry=https://maven.pkg.github.com/cd871127 -Dtoken=TOKEN&ndash;&gt;-->
+            <!--                <groupId>org.apache.maven.plugins</groupId>-->
+            <!--                <artifactId>maven-deploy-plugin</artifactId>-->
+            <!--                <version>2.8.2</version>-->
+            <!--                &lt;!&ndash;                <configuration>&ndash;&gt;-->
+            <!--                &lt;!&ndash;                    <altDeploymentRepository>&ndash;&gt;-->
+            <!--                &lt;!&ndash;                        internal.repo::default::https://maven.pkg.github.com/cd871127&ndash;&gt;-->
+            <!--                &lt;!&ndash;                    </altDeploymentRepository>&ndash;&gt;-->
+            <!--                &lt;!&ndash;                </configuration>&ndash;&gt;-->
+            <!--            </plugin>-->
         </plugins>
     </build>
 
@@ -75,16 +77,31 @@
             <snapshots>
                 <enabled>true</enabled>
             </snapshots>
-<!--            mvn deploy -Dregistry=https://maven.pkg.github.com/cd871127 -Dtoken=-->
-<!--            https://www.cnblogs.com/aeolian/p/12444569.html-->
+            <!--            mvn deploy -Dregistry=https://maven.pkg.github.com/cd871127 -Dtoken=-->
+            <!--            https://www.cnblogs.com/aeolian/p/12444569.html-->
         </repository>
     </repositories>
-<dependencies>
-    <dependency>
-        <groupId>org.projectlombok</groupId>
-        <artifactId>lombok</artifactId>
-        <version>1.18.12</version>
-        <scope>compile</scope>
-    </dependency>
-</dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>1.7.30</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.12</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+    </dependencies>
 </project>
