@@ -15,8 +15,6 @@ public class IpAddressConverter extends ClassicConverter {
     private static String IPS;
 
     static {
-//        IPS = NetUtils.getRealIpAddress().stream()
-//                .reduce((s, s2) -> s + ", " + s2).orElse("");
         try {
             IPS = InetAddress.getLocalHost().getHostAddress();
         } catch (UnknownHostException e) {
