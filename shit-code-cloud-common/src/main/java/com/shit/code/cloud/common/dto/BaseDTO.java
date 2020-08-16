@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 
 @Data
 public class BaseDTO {
-    private String uniqueId;
+    private Integer uniqueId;
     private Integer version;
     private Status status = Status.INVALID;
     private String createBy;
