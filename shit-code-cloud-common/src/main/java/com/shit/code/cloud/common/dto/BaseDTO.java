@@ -8,13 +8,16 @@ import java.time.LocalDateTime;
 public class BaseDTO {
     private Integer uniqueId;
     private Integer version;
-    private Status status = Status.INVALID;
+    private Status status;
     private String createBy;
     private LocalDateTime createTime;
     private String updateBy;
     private LocalDateTime updateTime;
 
     public enum Status {
+        /**
+         * 数据状态
+         */
         INVALID, VALID, DELETED
     }
 }
