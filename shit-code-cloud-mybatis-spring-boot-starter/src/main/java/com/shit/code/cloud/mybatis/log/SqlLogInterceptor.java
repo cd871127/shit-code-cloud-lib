@@ -40,8 +40,10 @@ import java.util.regex.Matcher;
 public class SqlLogInterceptor implements Interceptor {
     @Override
     public Object intercept(Invocation invocation) throws Throwable {
+        String sqlId = null;
         try {
             MappedStatement mappedStatement = getArg(invocation, MappedStatement.class);
+            sqlId = mappedStatement.getId();
             Object parameter = null;
             if (invocation.getArgs().length >= 1) {
                 parameter = invocation.getArgs()[1];
@@ -52,13 +54,15 @@ public class SqlLogInterceptor implements Interceptor {
             Configuration configuration = mappedStatement.getConfiguration();
             // 获取到最终的sql语句
             String sql = showSql(configuration, boundSql);
-            log.info(mappedStatement.getId());
-            log.info(sql);
+            log.debug("SqlId:{} \nExecutable Sql: {}", sqlId, sql);
         } catch (Exception e) {
             log.warn("show sql parameter failed. {}", ExceptionUtils.getStackTrace(e));
         }
+        long start = System.currentTimeMillis();
         // 执行完上面的任务后，不改变原有的sql执行过程
-        return invocation.proceed();
+        Object result = invocation.proceed();
+        log.debug("SqlId:{} \nElapse:{}", sqlId, System.currentTimeMillis() - start);
+        return result;
     }
 
     @SuppressWarnings("unchecked")
