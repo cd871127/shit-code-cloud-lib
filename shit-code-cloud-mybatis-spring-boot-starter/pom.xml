@@ -10,7 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>shit-code-cloud-mybatis-spring-boot-starter</artifactId>
-
+    <version>0.1.2</version>
     <dependencies>
         <dependency>
             <groupId>org.mybatis</groupId>
