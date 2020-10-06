@@ -5,6 +5,7 @@ import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.RedisSerializer;
+import org.springframework.lang.NonNull;
 
 /**
  * redis初始化
@@ -14,7 +15,8 @@ public class RedisInitializer implements BeanPostProcessor {
 
     @Override
     @SuppressWarnings("unchecked")
-    public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
+
+    public Object postProcessAfterInitialization(Object bean,@NonNull String beanName) throws BeansException {
         if (bean.getClass().equals(RedisTemplate.class)) {
             log.info("设置Redis序列化器");
             RedisTemplate<Object, Object> redisTemplate = (RedisTemplate<Object, Object>) bean;
