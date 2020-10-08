@@ -60,12 +60,12 @@ public class MultiLevelCacheResolver extends AbstractCacheResolver {
         Annotation[] annotations = method.getAnnotations();
         CacheConfig cacheConfig = new CacheConfig().setType(returnType);
         Arrays.stream(annotations).forEach(annotation -> {
-            //如果存在MultiLevelCachePut注解，获取ttl和lock
+            //如果存在MultiLevelCachePut注解，获取ttl
             if (annotation instanceof MultiLevelCachePut) {
                 MultiLevelCachePut multiLevelCachePut = (MultiLevelCachePut) annotation;
                 cacheConfig.setTtl(multiLevelCachePut.ttl());
             }
-            //如果存在MultiLevelCachePut注解，获取ttl和lock
+            //如果存在MultiLevelCachePut注解，获取ttl
             if (annotation instanceof MultiLevelCacheable) {
                 MultiLevelCacheable multiLevelCacheable = (MultiLevelCacheable) annotation;
                 cacheConfig.setTtl(multiLevelCacheable.ttl());

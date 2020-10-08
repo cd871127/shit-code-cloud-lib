@@ -34,7 +34,7 @@ public @interface MultiLevelCacheEvict {
     String cacheManager() default "";
 
 
-    String cacheResolver() default "";
+    String cacheResolver() default "multiLevelCacheResolver";
 
 
     String condition() default "";
