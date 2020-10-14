@@ -9,7 +9,7 @@ import shit.code.cloud.spring.utils.SpringContextUtil;
 
 @Configuration
 @Slf4j
-public class SpringBootAutoConfiguration {
+public class ShitCodeSpringBootAutoConfiguration {
 
     @Bean
     public SpringContextUtil springContextUtil() {
