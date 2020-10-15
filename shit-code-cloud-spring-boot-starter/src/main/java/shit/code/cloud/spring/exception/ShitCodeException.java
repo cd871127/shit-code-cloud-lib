@@ -13,7 +13,10 @@ import lombok.extern.slf4j.Slf4j;
 @Data
 public class ShitCodeException extends RuntimeException {
 
-    private int code = 0;
-    private String msg;
+    private ShitCodeExceptionEnum shitCodeExceptionEnum;
 
+    public ShitCodeException(ShitCodeExceptionEnum shitCodeExceptionEnum) {
+        super();
+        this.shitCodeExceptionEnum = shitCodeExceptionEnum;
+    }
 }
