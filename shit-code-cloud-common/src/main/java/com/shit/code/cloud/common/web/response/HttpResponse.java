@@ -1,4 +1,4 @@
-package shit.code.cloud.spring.response;
+package com.shit.code.cloud.common.web.response;
 
 /**
  * @author anthonychen

@@ -1,4 +1,4 @@
-package shit.code.cloud.spring.exception;
+package com.shit.code.cloud.common.exception;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;

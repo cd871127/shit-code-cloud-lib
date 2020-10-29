@@ -1,8 +1,8 @@
-package shit.code.cloud.spring.exception;
+package com.shit.code.cloud.common.exception;
 
+import com.shit.code.cloud.common.web.response.HttpResponse;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
-import shit.code.cloud.spring.response.HttpResponse;
 
 /**
  * @author anthonychen

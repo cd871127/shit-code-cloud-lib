@@ -1,12 +1,15 @@
-package com.shit.code.cloud.common.dto;
+package com.shit.code.cloud.common.entity;
 
 import lombok.Data;
 
 import java.time.LocalDateTime;
 
+/**
+ * @author Anthony
+ * @date 10/29/20
+ **/
 @Data
-public class BaseDTO {
-    private Integer uniqueId;
+public class BaseEntity {
     private Integer version;
     private Status status;
     private String createBy;
