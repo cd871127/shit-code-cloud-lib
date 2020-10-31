@@ -18,13 +18,13 @@ public class ShitCodeException extends RuntimeException implements HttpResponse 
 
     private String msg;
 
-    public ShitCodeException(ShitCodeExceptionEnum shitCodeExceptionEnum) {
+    public ShitCodeException(HttpResponse shitCodeExceptionEnum) {
         super(shitCodeExceptionEnum.getMsg());
         this.code = shitCodeExceptionEnum.getCode();
         this.msg = super.getMessage();
     }
 
-    public ShitCodeException(ShitCodeExceptionEnum shitCodeExceptionEnum, Object... args) {
+    public ShitCodeException(HttpResponse shitCodeExceptionEnum, Object... args) {
         super(String.format(shitCodeExceptionEnum.getMsg(), args));
         this.code = shitCodeExceptionEnum.getCode();
         this.msg = super.getMessage();

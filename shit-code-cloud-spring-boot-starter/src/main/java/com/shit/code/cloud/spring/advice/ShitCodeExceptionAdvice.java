@@ -6,6 +6,7 @@ import com.shit.code.cloud.common.exception.ShitCodeExceptionEnum;
 import com.shit.code.cloud.common.web.response.ExceptionHttpResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.exception.ExceptionUtils;
+import org.slf4j.MDC;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -24,25 +25,40 @@ public class ShitCodeExceptionAdvice {
     public ExceptionHttpResponse criticalException(CriticalException criticalException) {
         log.error("致命业务异常：{}", criticalException.getMsg());
         ExceptionHttpResponse exceptionHttpResponse = new ExceptionHttpResponse(criticalException);
-        exceptionHttpResponse.setExceptionClassName(criticalException.getClass().getName());
+
         //TODO 异常上报
-        return exceptionHttpResponse;
+        return handleResponse(exceptionHttpResponse, criticalException);
     }
 
     @ExceptionHandler(NormalException.class)
     public ExceptionHttpResponse normalException(NormalException normalException) {
         log.error("普通业务异常：{}", normalException.getMsg());
         ExceptionHttpResponse exceptionHttpResponse = new ExceptionHttpResponse(normalException);
-        exceptionHttpResponse.setExceptionClassName(normalException.getClass().getName());
-        return exceptionHttpResponse;
+        return handleResponse(exceptionHttpResponse, normalException);
     }
 
     @ExceptionHandler(Exception.class)
     public ExceptionHttpResponse exception(Exception exception) {
         log.error("系统异常\n{}", ExceptionUtils.getStackTrace(exception));
         ExceptionHttpResponse exceptionHttpResponse = new ExceptionHttpResponse(ShitCodeExceptionEnum.FAILED.getCode(), exception.getMessage());
-        exceptionHttpResponse.setExceptionClassName(exception.getClass().getName());
+
         //TODO 异常上报
+        return handleResponse(exceptionHttpResponse, exception);
+    }
+
+    private ExceptionHttpResponse handleResponse(ExceptionHttpResponse exceptionHttpResponse, Exception exception) {
+        exceptionHttpResponse.setExceptionClassName(exception.getClass().getName());
+        exceptionHttpResponse.setTraceId(getTraceId());
         return exceptionHttpResponse;
+    }
+
+    private String getTraceId() {
+        String traceId = null;
+        try {
+            traceId = MDC.get("traceId");
+        } catch (Exception e) {
+            log.warn("设置TraceId异常：{}", ExceptionUtils.getStackTrace(e));
+        }
+        return traceId;
     }
 }

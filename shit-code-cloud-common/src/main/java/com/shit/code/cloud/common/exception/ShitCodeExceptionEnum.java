@@ -18,8 +18,15 @@ public enum ShitCodeExceptionEnum implements HttpResponse {
      */
     OK("00000000", "请求成功"),
 
-    FAILED("00000001", "请求失败:%s");
+    FAILED("00000001", "请求失败:%s"),
 
+    ERR_DATA_NOT_EXIST("00000002", "数据不存在,key:%s"),
+
+    ERR_INSERT_COUNT("00000003", "插入数据量异常，预期:%s, 实际:%s"),
+
+    ERR_DELETE_COUNT("00000004", "删除数据量异常，预期:%s, 实际:%s"),
+    ERR_UPDATE_COUNT("00000005", "更新数据量异常，预期:%s, 实际:%s"),
+    ;
     /**
      * 0-2位，系统代码
      * 3-4位，异常等级

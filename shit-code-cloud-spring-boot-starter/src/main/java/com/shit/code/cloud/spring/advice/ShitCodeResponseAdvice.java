@@ -2,6 +2,8 @@ package com.shit.code.cloud.spring.advice;
 
 import com.shit.code.cloud.common.web.response.CommonHttpResponse;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.exception.ExceptionUtils;
+import org.slf4j.MDC;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -26,6 +28,13 @@ public class ShitCodeResponseAdvice implements ResponseBodyAdvice<Object> {
 
     @Override
     public Object beforeBodyWrite(Object o, @NonNull MethodParameter methodParameter, @NonNull MediaType mediaType, @NonNull Class<? extends HttpMessageConverter<?>> aClass, @NonNull ServerHttpRequest serverHttpRequest, @NonNull ServerHttpResponse serverHttpResponse) {
-        return new CommonHttpResponse(o);
+        CommonHttpResponse commonHttpResponse = new CommonHttpResponse(o);
+        try {
+            String traceId = MDC.get("traceId");
+            commonHttpResponse.setTraceId(traceId);
+        } catch (Exception e) {
+            log.warn("设置TraceId异常：{}", ExceptionUtils.getStackTrace(e));
+        }
+        return commonHttpResponse;
     }
 }
