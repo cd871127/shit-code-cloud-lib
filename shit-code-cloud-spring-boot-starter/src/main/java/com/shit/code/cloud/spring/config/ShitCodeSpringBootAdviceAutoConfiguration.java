@@ -1,11 +1,11 @@
-package shit.code.cloud.spring.config;
+package com.shit.code.cloud.spring.config;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@ComponentScan("shit.code.cloud.spring.exception")
+@ComponentScan("com.shit.code.cloud.spring.advice")
 @Slf4j
-public class ShitCodeSpringBootExceptionAutoConfiguration {
+public class ShitCodeSpringBootAdviceAutoConfiguration {
 }

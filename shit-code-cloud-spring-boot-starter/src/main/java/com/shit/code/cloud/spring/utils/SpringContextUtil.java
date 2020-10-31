@@ -1,4 +1,4 @@
-package shit.code.cloud.spring.utils;
+package com.shit.code.cloud.spring.utils;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;

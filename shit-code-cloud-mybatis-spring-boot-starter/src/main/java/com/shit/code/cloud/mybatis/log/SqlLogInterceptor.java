@@ -41,6 +41,7 @@ public class SqlLogInterceptor implements Interceptor {
     @Override
     public Object intercept(Invocation invocation) throws Throwable {
         String sqlId = null;
+        String targetSql = null;
         try {
             MappedStatement mappedStatement = getArg(invocation, MappedStatement.class);
             sqlId = mappedStatement.getId();
@@ -53,15 +54,15 @@ public class SqlLogInterceptor implements Interceptor {
             // 获取节点的配置
             Configuration configuration = mappedStatement.getConfiguration();
             // 获取到最终的sql语句
-            String sql = showSql(configuration, boundSql);
-            log.debug("SqlId:{} \nExecutable Sql: {}", sqlId, sql);
+            targetSql = showSql(configuration, boundSql);
+
         } catch (Exception e) {
             log.warn("show sql parameter failed. {}", ExceptionUtils.getStackTrace(e));
         }
         long start = System.currentTimeMillis();
         // 执行完上面的任务后，不改变原有的sql执行过程
         Object result = invocation.proceed();
-        log.debug("SqlId:{} \nElapse:{}", sqlId, System.currentTimeMillis() - start);
+        log.debug("sqlId:{},  executable sql:{},  elapse:{}", sqlId, targetSql, System.currentTimeMillis() - start);
         return result;
     }
 

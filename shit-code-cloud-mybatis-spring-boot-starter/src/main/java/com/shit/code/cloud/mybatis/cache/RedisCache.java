@@ -3,7 +3,7 @@ package com.shit.code.cloud.mybatis.cache;
 import org.apache.ibatis.cache.Cache;
 import org.springframework.data.redis.core.BoundHashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
-import shit.code.cloud.spring.utils.SpringContextUtil;
+import com.shit.code.cloud.spring.utils.SpringContextUtil;
 
 import java.time.Duration;
 

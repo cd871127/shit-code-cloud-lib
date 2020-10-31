@@ -10,7 +10,7 @@ public interface HttpResponse {
      *
      * @return
      */
-    int getCode();
+    String getCode();
 
     /**
      * 失败才有这个消息

@@ -1,5 +1,6 @@
 package com.shit.code.cloud.common.web.response;
 
+import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -7,9 +8,11 @@ import lombok.extern.slf4j.Slf4j;
  * @date 2020/10/15
  **/
 @Slf4j
-public class StringHttpResponse extends ShitCodeHttpResponse<String> {
-    public StringHttpResponse() {
-        super();
+@NoArgsConstructor
+public class StringHttpResponse extends GeneralHttpResponse<String> {
+
+    public StringHttpResponse(String code, String msg) {
+        super(code, msg);
     }
 
     public StringHttpResponse(HttpResponse httpResponse) {
