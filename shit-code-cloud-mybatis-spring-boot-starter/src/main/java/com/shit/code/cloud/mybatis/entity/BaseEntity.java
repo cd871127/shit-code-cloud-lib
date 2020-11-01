@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 public class BaseEntity {
 
     @TableId(type = IdType.AUTO, value = "id")
-    private Integer id;
+    private Long id;
 
     @Version
     @TableField(update = "%s+1", updateStrategy = FieldStrategy.IGNORED)
@@ -44,6 +44,6 @@ public class BaseEntity {
         /**
          * 是否被删除
          */
-        YES, NO
+        NO, YES
     }
 }
