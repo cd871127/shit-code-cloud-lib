@@ -15,6 +15,7 @@
         <module>shit-code-cloud-mybatis-spring-boot-starter</module>
         <module>shit-code-cloud-spring-boot-starter</module>
         <module>shit-code-cloud-cache-spring-boot-starter</module>
+        <module>shit-code-cloud-jpa-spring-boot-starter</module>
     </modules>
 
     <properties>

@@ -36,4 +36,5 @@ public interface BaseCurdController<T extends BaseEntity> {
         }
         return getService().updateById(t);
     }
+
 }

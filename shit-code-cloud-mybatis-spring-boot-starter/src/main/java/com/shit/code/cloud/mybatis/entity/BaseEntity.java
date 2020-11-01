@@ -1,9 +1,6 @@
 package com.shit.code.cloud.mybatis.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableLogic;
-import com.baomidou.mybatisplus.annotation.Version;
+import com.baomidou.mybatisplus.annotation.*;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -19,6 +16,7 @@ public class BaseEntity {
     private Integer id;
 
     @Version
+    @TableField(update = "%s+1", updateStrategy = FieldStrategy.IGNORED)
     private Integer version;
 
     private BaseEntity.DataStatus dataStatus;
@@ -29,6 +27,7 @@ public class BaseEntity {
 
     private String updateBy;
 
+    @TableField(update = "now()", updateStrategy = FieldStrategy.IGNORED)
     private LocalDateTime updateTime;
 
     @TableLogic(value = "'NO'", delval = "'YES'")

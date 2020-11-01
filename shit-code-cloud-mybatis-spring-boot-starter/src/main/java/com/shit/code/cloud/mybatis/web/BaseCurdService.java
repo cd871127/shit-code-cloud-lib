@@ -1,9 +1,13 @@
 package com.shit.code.cloud.mybatis.web;
 
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.shit.code.cloud.common.exception.CriticalException;
 import com.shit.code.cloud.common.exception.NormalException;
 import com.shit.code.cloud.mybatis.entity.BaseEntity;
+
+import java.util.List;
 
 import static com.shit.code.cloud.common.exception.ShitCodeExceptionEnum.*;
 
