@@ -41,7 +41,7 @@ public interface BaseCurdService<T extends BaseEntity> {
      * @param id
      * @return
      */
-    default T deleteById(final int id) {
+    default T deleteById(final long id) {
         T t = findById(id);
 
         int count = getMapper().deleteById(id);
@@ -57,7 +57,7 @@ public interface BaseCurdService<T extends BaseEntity> {
      * @param id
      * @return
      */
-    default T findById(final int id) {
+    default T findById(final long id) {
         T t = getMapper().selectById(id);
         if (t == null) {
             throw new NormalException(ERR_DATA_NOT_EXIST, id);
