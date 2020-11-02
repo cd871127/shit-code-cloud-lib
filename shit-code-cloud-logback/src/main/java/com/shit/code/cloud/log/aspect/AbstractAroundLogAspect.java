@@ -3,6 +3,13 @@ package com.shit.code.cloud.log.aspect;
 import com.shit.code.cloud.log.LogLevel;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.reflect.MethodSignature;
+
+import java.lang.reflect.Method;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * @author Anthony
@@ -12,23 +19,51 @@ import org.aspectj.lang.ProceedingJoinPoint;
 public abstract class AbstractAroundLogAspect {
 
     /**
+     * 日志记录,保证如果同时存在两种aroundlog，只打印一次
+     */
+    protected static ThreadLocal<Set<String>> threadLocalLogRecord = ThreadLocal.withInitial(HashSet::new);
+
+    /**
      * 获取日志等级
      *
      * @param joinPoint
      * @return
      */
-    protected abstract LogLevel getLogLevel(ProceedingJoinPoint joinPoint);
+    protected abstract LogLevel getLogLevel(ProceedingJoinPoint joinPoint, Method method);
 
     protected final Object proceed(ProceedingJoinPoint joinPoint) throws Throwable {
-        LogLevel logLevel = getLogLevel(joinPoint);
-        printLog(logLevel, "PARAMETER:{}", joinPoint.getArgs());
+        MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
+        Method method = methodSignature.getMethod();
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(joinPoint.getTarget().getClass().getName());
+        stringBuilder.append("#");
+        stringBuilder.append(method.getName());
+        String fullMethodName = stringBuilder.toString();
+
+        List<Class<?>> paramTypeList = Arrays.asList(method.getParameterTypes());
+
+        if (!paramTypeList.isEmpty()) {
+            paramTypeList.forEach(stringBuilder::append);
+        }
+        String fullMethodSignature = stringBuilder.toString();
+        //判断高优先级的log有没有打出来 TODO anthony 添加参数签名
+        Set<String> logRecord = threadLocalLogRecord.get();
+        if (logRecord.contains(fullMethodSignature)) {
+            //打出来了，直接返回
+            return joinPoint.proceed();
+        }
+        //没有打出来，添加记录
+        logRecord.add(fullMethodSignature);
         try {
+            LogLevel logLevel = getLogLevel(joinPoint, method);
+            printLog(logLevel, "\n{}\nPARAMETER:{}", fullMethodName, joinPoint.getArgs());
             long start = System.currentTimeMillis();
             Object result = joinPoint.proceed();
-            printLog(logLevel, "RESULT:{} TIME:{}ms", result, System.currentTimeMillis() - start);
+            printLog(logLevel, "\n{}\nRESULT:{} TIME:{}ms", fullMethodName, result, System.currentTimeMillis() - start);
             return result;
-        } catch (Throwable throwable) {
-            throw throwable;
+        } finally {
+            //移除记录
+            logRecord.remove(fullMethodSignature);
         }
     }
 

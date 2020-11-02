@@ -62,7 +62,7 @@ public class SqlLogInterceptor implements Interceptor {
         long start = System.currentTimeMillis();
         // 执行完上面的任务后，不改变原有的sql执行过程
         Object result = invocation.proceed();
-        log.debug("sqlId:{},  executable sql:{},  elapse:{}", sqlId, targetSql, System.currentTimeMillis() - start);
+        log.debug("\n{}\n{}\n{}ms", sqlId, targetSql, System.currentTimeMillis() - start);
         return result;
     }
 

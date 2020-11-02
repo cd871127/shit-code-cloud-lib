@@ -7,6 +7,11 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.reflect.MethodSignature;
+import org.springframework.core.Ordered;
+import org.springframework.core.annotation.Order;
+
+import java.lang.reflect.Method;
 
 /**
  * @author Anthony
@@ -14,6 +19,7 @@ import org.aspectj.lang.annotation.Pointcut;
  **/
 @Aspect
 @Slf4j
+@Order(Ordered.HIGHEST_PRECEDENCE + 1)
 public class AnnotationAroundLogAspect extends AbstractAroundLogAspect {
 
     @Pointcut("@annotation(com.shit.code.cloud.log.annotation.AroundLog)")
@@ -26,7 +32,7 @@ public class AnnotationAroundLogAspect extends AbstractAroundLogAspect {
     }
 
     @Override
-    protected LogLevel getLogLevel(ProceedingJoinPoint joinPoint) {
-        return joinPoint.getTarget().getClass().getAnnotation(AroundLog.class).level();
+    protected LogLevel getLogLevel(ProceedingJoinPoint joinPoint, Method method) {
+        return method.getAnnotation(AroundLog.class).level();
     }
 }
