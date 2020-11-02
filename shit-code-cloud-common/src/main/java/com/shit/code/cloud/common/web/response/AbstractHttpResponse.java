@@ -2,6 +2,7 @@ package com.shit.code.cloud.common.web.response;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 /**
  * @author Anthony
@@ -9,6 +10,7 @@ import lombok.NoArgsConstructor;
  **/
 @Data
 @NoArgsConstructor
+@ToString(callSuper = true)
 public abstract class AbstractHttpResponse implements HttpResponse {
     private String code;
     private String msg;

@@ -2,6 +2,7 @@ package com.shit.code.cloud.common.web.response;
 
 import com.shit.code.cloud.common.exception.ShitCodeExceptionEnum;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -10,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
  **/
 @Slf4j
 @NoArgsConstructor
+@ToString(callSuper = true)
 public class CommonHttpResponse extends GeneralHttpResponse<Object> {
 
 

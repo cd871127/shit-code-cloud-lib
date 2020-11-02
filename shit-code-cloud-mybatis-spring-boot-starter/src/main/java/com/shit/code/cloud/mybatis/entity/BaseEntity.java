@@ -21,14 +21,14 @@ public class BaseEntity {
 
     private BaseEntity.DataStatus dataStatus;
 
-    private String createBy;
+    private String createdBy;
 
-    private LocalDateTime createTime;
+    private LocalDateTime createdDate;
 
-    private String updateBy;
+    private String lastModifiedBy;
 
     @TableField(update = "now()", updateStrategy = FieldStrategy.IGNORED)
-    private LocalDateTime updateTime;
+    private LocalDateTime lastModifiedDate;
 
     @TableLogic(value = "'NO'", delval = "'YES'")
     private Deleted deleted;

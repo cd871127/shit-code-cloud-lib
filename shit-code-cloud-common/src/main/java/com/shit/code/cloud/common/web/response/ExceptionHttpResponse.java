@@ -3,6 +3,7 @@ package com.shit.code.cloud.common.web.response;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 /**
  * @author Anthony
@@ -11,6 +12,7 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @NoArgsConstructor
+@ToString(callSuper = true)
 public class ExceptionHttpResponse extends AbstractHttpResponse {
 
     private String exceptionClassName;

@@ -17,17 +17,17 @@ public interface BaseCurdController<T extends BaseEntity> {
     }
 
     @DeleteMapping("{id}")
-    default T deleteById(@PathVariable("id") Integer id) {
+    default T deleteById(@PathVariable("id") Long id) {
         return getService().deleteById(id);
     }
 
     @GetMapping("{id}")
-    default T findById(@PathVariable("id") Integer id) {
+    default T findById(@PathVariable("id") Long id) {
         return getService().findById(id);
     }
 
     @PutMapping("{id}")
-    default T updateById(@PathVariable("id") Integer id, @RequestBody T t) {
+    default T updateById(@PathVariable("id") Long id, @RequestBody T t) {
         if (t.getId() == null) {
             t.setId(id);
         } else if (!t.getId().equals(id)) {
