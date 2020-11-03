@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  com.shit.code.cloud.log.configuration.AroundLogAutoConfiguration
+  com.shit.code.cloud.log.autoconfigure.AroundLogAutoConfiguration

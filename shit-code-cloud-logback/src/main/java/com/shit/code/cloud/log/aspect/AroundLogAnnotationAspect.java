@@ -20,7 +20,7 @@ import java.lang.reflect.Method;
 @Aspect
 @Slf4j
 @Order(Ordered.HIGHEST_PRECEDENCE + 1)
-public class AnnotationAroundLogAspect extends AbstractAroundLogAspect {
+public class AroundLogAnnotationAspect extends AbstractAroundLogAspect {
 
     @Pointcut("@annotation(com.shit.code.cloud.log.annotation.AroundLog)")
     public void annotationLog() {

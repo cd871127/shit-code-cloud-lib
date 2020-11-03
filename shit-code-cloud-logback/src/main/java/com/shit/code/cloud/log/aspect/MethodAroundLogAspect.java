@@ -1,6 +1,7 @@
 package com.shit.code.cloud.log.aspect;
 
 import com.shit.code.cloud.log.LogLevel;
+import com.shit.code.cloud.log.autoconfigure.AroundLogProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -20,10 +21,10 @@ import java.lang.reflect.Method;
 @Order(Ordered.HIGHEST_PRECEDENCE)
 public class MethodAroundLogAspect extends AbstractAroundLogAspect {
 
-    private final LogLevel level;
+    private AroundLogProperties aroundLogProperties;
 
-    public MethodAroundLogAspect(LogLevel level) {
-        this.level = level;
+    public MethodAroundLogAspect(AroundLogProperties aroundLogProperties) {
+        this.aroundLogProperties = aroundLogProperties;
     }
 
 
@@ -39,6 +40,6 @@ public class MethodAroundLogAspect extends AbstractAroundLogAspect {
 
     @Override
     protected LogLevel getLogLevel(ProceedingJoinPoint joinPoint, Method method) {
-        return level;
+        return aroundLogProperties.getMethod().getLevel();
     }
 }
