@@ -33,7 +33,7 @@ public class AroundLogAutoConfiguration {
     @Bean
     @ConditionalOnProperty(name = "enable", prefix = CONFIG_PREFIX + ".method", havingValue = "true")
     MethodAroundLogAspect methodAroundLogAspect(AroundLogProperties aroundLogProperties) {
-        log.debug("MethodAroundLogAspect created");
+        log.warn("创建方法AroundLog切面, 所有public方法都会拦截, 比较消耗性能, 不建议在生产环境使用");
         return new MethodAroundLogAspect(aroundLogProperties);
     }
 

@@ -45,6 +45,13 @@
             <!--                &lt;!&ndash;                    </altDeploymentRepository>&ndash;&gt;-->
             <!--                &lt;!&ndash;                </configuration>&ndash;&gt;-->
             <!--            </plugin>-->
+
+            <plugin>
+                <groupId>com.github.ulisesbocchio</groupId>
+                <artifactId>jasypt-maven-plugin</artifactId>
+                <version>3.0.3</version>
+            </plugin>
+<!--            mvn jasypt:encrypt-value -Djasypt.encryptor.algorithm="PBEWITHHMACSHA512ANDAES_256" -Djasypt.encryptor.password="123456" -Djasypt.plugin.value="123456"-->
         </plugins>
     </build>
 
