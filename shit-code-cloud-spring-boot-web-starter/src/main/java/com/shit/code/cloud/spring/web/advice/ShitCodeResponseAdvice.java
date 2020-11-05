@@ -1,4 +1,4 @@
-package spring.web.advice;
+package com.shit.code.cloud.spring.web.advice;
 
 import com.shit.code.cloud.common.web.response.CommonHttpResponse;
 import lombok.extern.slf4j.Slf4j;
