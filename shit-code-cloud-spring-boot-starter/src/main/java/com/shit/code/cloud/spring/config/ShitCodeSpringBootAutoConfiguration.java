@@ -1,9 +1,9 @@
 package com.shit.code.cloud.spring.config;
 
+import com.shit.code.cloud.spring.utils.SpringContextUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import com.shit.code.cloud.spring.utils.SpringContextUtil;
 
 @Configuration
 @Slf4j

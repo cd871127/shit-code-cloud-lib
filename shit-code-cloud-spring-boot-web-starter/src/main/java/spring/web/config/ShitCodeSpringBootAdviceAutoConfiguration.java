@@ -1,4 +1,4 @@
-package com.shit.code.cloud.spring.config;
+package spring.web.config;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.ComponentScan;

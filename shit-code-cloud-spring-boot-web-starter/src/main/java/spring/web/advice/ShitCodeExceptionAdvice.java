@@ -1,4 +1,4 @@
-package com.shit.code.cloud.spring.advice;
+package spring.web.advice;
 
 import com.shit.code.cloud.common.exception.CriticalException;
 import com.shit.code.cloud.common.exception.NormalException;

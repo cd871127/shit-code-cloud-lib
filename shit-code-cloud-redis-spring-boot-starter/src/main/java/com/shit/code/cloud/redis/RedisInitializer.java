@@ -16,7 +16,7 @@ public class RedisInitializer implements BeanPostProcessor {
     @Override
     @SuppressWarnings("unchecked")
 
-    public Object postProcessAfterInitialization(Object bean,@NonNull String beanName) throws BeansException {
+    public Object postProcessAfterInitialization(Object bean, @NonNull String beanName) throws BeansException {
         if (bean.getClass().equals(RedisTemplate.class)) {
             log.info("设置Redis序列化器");
             RedisTemplate<Object, Object> redisTemplate = (RedisTemplate<Object, Object>) bean;

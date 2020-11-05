@@ -15,6 +15,7 @@
         <module>shit-code-cloud-mybatis-spring-boot-starter</module>
         <module>shit-code-cloud-spring-boot-starter</module>
         <module>shit-code-cloud-cache-spring-boot-starter</module>
+        <module>shit-code-cloud-spring-boot-web-starter</module>
     </modules>
 
     <properties>
@@ -51,7 +52,7 @@
                 <artifactId>jasypt-maven-plugin</artifactId>
                 <version>3.0.3</version>
             </plugin>
-<!--            mvn jasypt:encrypt-value -Djasypt.encryptor.algorithm="PBEWITHHMACSHA512ANDAES_256" -Djasypt.encryptor.password="123456" -Djasypt.plugin.value="123456"-->
+            <!--            mvn jasypt:encrypt-value -Djasypt.encryptor.algorithm="PBEWITHHMACSHA512ANDAES_256" -Djasypt.encryptor.password="123456" -Djasypt.plugin.value="123456"-->
         </plugins>
     </build>
 

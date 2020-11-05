@@ -59,6 +59,11 @@
             <version>5.2.9.RELEASE</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>com.shit.code.cloud</groupId>
+            <artifactId>shit-code-cloud-spring-boot-starter</artifactId>
+            <version>0.1.2</version>
+        </dependency>
     </dependencies>
 
 </project>

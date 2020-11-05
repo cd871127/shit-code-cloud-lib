@@ -1,5 +1,6 @@
 package com.shit.code.cloud.mybatis.cache;
 
+import com.shit.code.cloud.spring.utils.SpringContextUtil;
 import org.apache.ibatis.cache.Cache;
 import org.springframework.data.redis.core.BoundHashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -27,8 +28,8 @@ public class RedisCache implements Cache {
 
     @SuppressWarnings("unchecked")
     private void bindKey() {
-        RedisTemplate<String, Object> redisTemplate =null;
-//                (RedisTemplate<String, Object>) SpringContextUtil.getContext().getBean("redisTemplate", RedisTemplate.class);
+        RedisTemplate<String, Object> redisTemplate =
+                (RedisTemplate<String, Object>) SpringContextUtil.getContext().getBean("redisTemplate", RedisTemplate.class);
         this.boundHashOperations = redisTemplate.boundHashOps(id);
     }
 
