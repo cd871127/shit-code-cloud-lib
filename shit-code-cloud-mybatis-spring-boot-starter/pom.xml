@@ -48,11 +48,6 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>com.shit.code.cloud</groupId>
-            <artifactId>shit-code-cloud-spring-boot-starter</artifactId>
-            <version>0.1.2</version>
-        </dependency>
-        <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus</artifactId>
             <version>3.4.0</version>

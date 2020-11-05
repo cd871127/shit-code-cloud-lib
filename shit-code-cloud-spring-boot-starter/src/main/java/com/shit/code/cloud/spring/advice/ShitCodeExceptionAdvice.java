@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
  * @date 2020/10/14
  **/
 @Slf4j
-@RestControllerAdvice
+@RestControllerAdvice(basePackages = "com.shit.code.cloud.infrastructure")
 public class ShitCodeExceptionAdvice {
 
     @ExceptionHandler(CriticalException.class)
@@ -43,6 +43,7 @@ public class ShitCodeExceptionAdvice {
         ExceptionHttpResponse exceptionHttpResponse = new ExceptionHttpResponse(ShitCodeExceptionEnum.FAILED.getCode(), exception.getMessage());
 
         //TODO 异常上报
+//        throw exception;
         return handleResponse(exceptionHttpResponse, exception);
     }
 
