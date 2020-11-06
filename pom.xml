@@ -16,6 +16,7 @@
         <module>shit-code-cloud-spring-boot-starter</module>
         <module>shit-code-cloud-cache-spring-boot-starter</module>
         <module>shit-code-cloud-spring-boot-web-starter</module>
+        <module>shit-code-cache-spring-boot-starter</module>
     </modules>
 
     <properties>
