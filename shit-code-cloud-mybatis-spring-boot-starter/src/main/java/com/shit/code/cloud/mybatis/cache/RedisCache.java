@@ -1,6 +1,6 @@
 package com.shit.code.cloud.mybatis.cache;
 
-import com.shit.code.cloud.spring.utils.SpringContextUtil;
+import com.shit.code.spring.utils.SpringContextUtil;
 import org.apache.ibatis.cache.Cache;
 import org.springframework.data.redis.core.BoundHashOperations;
 import org.springframework.data.redis.core.RedisTemplate;

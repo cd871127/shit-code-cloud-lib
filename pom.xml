@@ -11,12 +11,13 @@
     <modules>
         <module>shit-code-cloud-logback</module>
         <module>shit-code-cloud-common</module>
-        <module>shit-code-cloud-redis-spring-boot-starter</module>
         <module>shit-code-cloud-mybatis-spring-boot-starter</module>
         <module>shit-code-cloud-spring-boot-starter</module>
         <module>shit-code-cloud-cache-spring-boot-starter</module>
         <module>shit-code-cloud-spring-boot-web-starter</module>
         <module>shit-code-cache-spring-boot-starter</module>
+        <module>shit-code-redis-spring-boot-starter</module>
+        <module>shit-code-spring-boot-starter</module>
     </modules>
 
     <properties>
@@ -31,6 +32,8 @@
         <aspectj.version>1.9.6</aspectj.version>
         <caffeine.version>2.8.5</caffeine.version>
         <protobuf.version>4.0.0-rc-2</protobuf.version>
+        <jackson.version>2.11.3</jackson.version>
+        <brave.version>5.12.3</brave.version>
     </properties>
 
     <build>

@@ -42,10 +42,7 @@ public class ShitCodeCacheAutoConfiguration {
     @Primary
     ShitCodeCacheManager shitCodeCacheManager(RedisCacheManager redisCacheManager, CaffeineCacheManager caffeineCacheManager) {
         log.debug("初始化ShitCodeCacheManager");
-        ShitCodeCacheManager shitCodeCacheManager = new ShitCodeCacheManager().setRedisCacheManager(redisCacheManager).setCaffeineCacheManager(caffeineCacheManager);
-//        List<String> cacheNames = cacheProperties.getCacheNames();
-
-        return shitCodeCacheManager;
+        return new ShitCodeCacheManager().setRedisCacheManager(redisCacheManager).setCaffeineCacheManager(caffeineCacheManager);
     }
 
     @Bean

@@ -55,7 +55,7 @@
         </dependency>
         <dependency>
             <groupId>com.shit.code.cloud</groupId>
-            <artifactId>shit-code-cloud-spring-boot-starter</artifactId>
+            <artifactId>shit-code-spring-boot-starter</artifactId>
             <version>0.1.2</version>
         </dependency>
     </dependencies>
