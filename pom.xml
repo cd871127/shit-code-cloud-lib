@@ -7,20 +7,19 @@
     <groupId>com.shit.code.cloud</groupId>
     <artifactId>shit-code-cloud-lib</artifactId>
     <packaging>pom</packaging>
-    <version>${lib.version}</version>
+    <version>0.2.0</version>
     <modules>
-        <module>shit-code-cloud-cache-spring-boot-starter</module>
+        <!--        <module>shit-code-cloud-cache-spring-boot-starter</module>-->
         <module>shit-code-cache-spring-boot-starter</module>
         <module>shit-code-redis-spring-boot-starter</module>
         <module>shit-code-spring-boot-starter</module>
-        <module>shit-code-spring-boot-log</module>
         <module>shit-code-mybatis-spring-boot-starter</module>
         <module>shit-code-web-spring-boot-starter</module>
         <module>shit-code-common</module>
+        <module>shit-code-log-spring-boot-starter</module>
     </modules>
 
     <properties>
-        <lib.version>0.2.0</lib.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spring.version>5.2.9.RELEASE</spring.version>
         <spring-boot.version>2.3.4.RELEASE</spring-boot.version>
@@ -48,8 +47,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${maven-compiler-plugin.version}</version>
                 <configuration>
-                    <source>8</source>
-                    <target>8</target>
+                    <source>11</source>
+                    <target>11</target>
                 </configuration>
             </plugin>
             <plugin>
@@ -61,13 +60,13 @@
         </plugins>
     </build>
 
-<!--    <distributionManagement>-->
-<!--        <repository>-->
-<!--            <id>github</id>-->
-<!--            <name>GitHub OWNER Apache Maven Packages</name>-->
-<!--            <url>https://maven.pkg.github.com/cd871127/shit-code-cloud-lib</url>-->
-<!--        </repository>-->
-<!--    </distributionManagement>-->
+    <!--    <distributionManagement>-->
+    <!--        <repository>-->
+    <!--            <id>github</id>-->
+    <!--            <name>GitHub OWNER Apache Maven Packages</name>-->
+    <!--            <url>https://maven.pkg.github.com/cd871127/shit-code-cloud-lib</url>-->
+    <!--        </repository>-->
+    <!--    </distributionManagement>-->
 
 
     <repositories>
