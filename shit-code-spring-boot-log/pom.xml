@@ -5,7 +5,7 @@
     <parent>
         <artifactId>shit-code-cloud-lib</artifactId>
         <groupId>com.shit.code.cloud</groupId>
-        <version>0.1.1</version>
+        <version>${lib.version}</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -20,8 +20,8 @@
         </dependency>
         <dependency>
             <groupId>com.shit.code.cloud</groupId>
-            <artifactId>shit-code-cloud-common</artifactId>
-            <version>0.1.2</version>
+            <artifactId>shit-code-common</artifactId>
+            <version>${lib.version}</version>
             <scope>provided</scope>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.aspectj/aspectjweaver -->

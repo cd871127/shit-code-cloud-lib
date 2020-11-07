@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.shit.code.mybatis.spring.boot.configure.MybatisAutoConfiguration

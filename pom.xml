@@ -7,19 +7,20 @@
     <groupId>com.shit.code.cloud</groupId>
     <artifactId>shit-code-cloud-lib</artifactId>
     <packaging>pom</packaging>
-    <version>0.1.1</version>
+    <version>${lib.version}</version>
     <modules>
-        <module>shit-code-cloud-common</module>
-        <module>shit-code-cloud-mybatis-spring-boot-starter</module>
         <module>shit-code-cloud-cache-spring-boot-starter</module>
-        <module>shit-code-cloud-spring-boot-web-starter</module>
         <module>shit-code-cache-spring-boot-starter</module>
         <module>shit-code-redis-spring-boot-starter</module>
         <module>shit-code-spring-boot-starter</module>
         <module>shit-code-spring-boot-log</module>
+        <module>shit-code-mybatis-spring-boot-starter</module>
+        <module>shit-code-web-spring-boot-starter</module>
+        <module>shit-code-common</module>
     </modules>
 
     <properties>
+        <lib.version>0.2.0</lib.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spring.version>5.2.9.RELEASE</spring.version>
         <spring-boot.version>2.3.4.RELEASE</spring-boot.version>
@@ -33,6 +34,11 @@
         <protobuf.version>4.0.0-rc-2</protobuf.version>
         <jackson.version>2.11.3</jackson.version>
         <brave.version>5.12.3</brave.version>
+        <lombok.version>1.18.12</lombok.version>
+        <slf4j.version>1.7.30</slf4j.version>
+
+        <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+        <jasypt-maven-plugin.version>3.0.3</jasypt-maven-plugin.version>
     </properties>
 
     <build>
@@ -40,7 +46,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
+                <version>${maven-compiler-plugin.version}</version>
                 <configuration>
                     <source>8</source>
                     <target>8</target>
@@ -49,7 +55,7 @@
             <plugin>
                 <groupId>com.github.ulisesbocchio</groupId>
                 <artifactId>jasypt-maven-plugin</artifactId>
-                <version>3.0.3</version>
+                <version>${jasypt-maven-plugin.version}</version>
             </plugin>
             <!--            mvn jasypt:encrypt-value -Djasypt.encryptor.algorithm="PBEWITHHMACSHA512ANDAES_256" -Djasypt.encryptor.password="123456" -Djasypt.plugin.value="123456"-->
         </plugins>
@@ -94,7 +100,7 @@
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-api</artifactId>
-                <version>1.7.30</version>
+                <version>${slf4j.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
@@ -117,7 +123,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.12</version>
+            <version>${lombok.version}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
