@@ -1,4 +1,4 @@
-package com.shit.code.spring.log;
+package com.shit.code.log;
 
 /**
  * @author Anthony

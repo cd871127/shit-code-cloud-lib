@@ -1,6 +1,6 @@
-package com.shit.code.spring.log.annotation;
+package com.shit.code.log.annotation;
 
-import com.shit.code.spring.log.LogLevel;
+import com.shit.code.log.LogLevel;
 import org.springframework.core.annotation.AliasFor;
 
 import java.lang.annotation.*;

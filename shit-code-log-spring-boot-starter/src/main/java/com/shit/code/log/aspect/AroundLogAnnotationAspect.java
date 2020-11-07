@@ -1,7 +1,7 @@
-package com.shit.code.spring.log.aspect;
+package com.shit.code.log.aspect;
 
-import com.shit.code.spring.log.LogLevel;
-import com.shit.code.spring.log.annotation.AroundLog;
+import com.shit.code.log.LogLevel;
+import com.shit.code.log.annotation.AroundLog;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -21,7 +21,7 @@ import java.lang.reflect.Method;
 @Order(Ordered.HIGHEST_PRECEDENCE + 1)
 public class AroundLogAnnotationAspect extends AbstractAroundLogAspect {
 
-    @Pointcut("@annotation(com.shit.code.spring.log.annotation.AroundLog)")
+    @Pointcut("@annotation(com.shit.code.log.annotation.AroundLog)")
     public void annotationLog() {
     }
 

@@ -1,8 +1,8 @@
 package com.shit.code.spring.boot.configure;
 
-import com.shit.code.spring.log.aspect.AroundLogAnnotationAspect;
-import com.shit.code.spring.log.aspect.MethodAroundLogAspect;
-import com.shit.code.spring.log.aspect.RequestMappingAnnotationLogAspect;
+import com.shit.code.log.aspect.AroundLogAnnotationAspect;
+import com.shit.code.log.aspect.MethodAroundLogAspect;
+import com.shit.code.log.aspect.RequestMappingAnnotationLogAspect;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
