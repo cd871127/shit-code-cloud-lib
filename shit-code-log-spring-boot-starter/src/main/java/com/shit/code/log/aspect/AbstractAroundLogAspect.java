@@ -1,9 +1,9 @@
 package com.shit.code.log.aspect;
 
-import com.shit.code.log.LogLevel;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.reflect.MethodSignature;
+import org.springframework.boot.logging.LogLevel;
 
 import java.lang.reflect.Method;
 import java.util.Arrays;

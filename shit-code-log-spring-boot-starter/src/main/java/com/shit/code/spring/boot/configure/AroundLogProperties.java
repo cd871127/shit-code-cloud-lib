@@ -1,8 +1,8 @@
 package com.shit.code.spring.boot.configure;
 
-import com.shit.code.log.LogLevel;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.logging.LogLevel;
 
 import static com.shit.code.spring.boot.configure.AroundLogProperties.CONFIG_PREFIX;
 
