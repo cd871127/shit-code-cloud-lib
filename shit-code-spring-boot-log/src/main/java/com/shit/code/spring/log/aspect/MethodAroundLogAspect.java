@@ -1,7 +1,7 @@
-package com.shit.code.cloud.log.aspect;
+package com.shit.code.spring.log.aspect;
 
-import com.shit.code.cloud.log.LogLevel;
-import com.shit.code.cloud.log.autoconfigure.AroundLogProperties;
+import com.shit.code.spring.boot.configure.AroundLogProperties;
+import com.shit.code.spring.log.LogLevel;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -21,7 +21,7 @@ import java.lang.reflect.Method;
 @Order(Ordered.HIGHEST_PRECEDENCE)
 public class MethodAroundLogAspect extends AbstractAroundLogAspect {
 
-    private AroundLogProperties aroundLogProperties;
+    private final AroundLogProperties aroundLogProperties;
 
     public MethodAroundLogAspect(AroundLogProperties aroundLogProperties) {
         this.aroundLogProperties = aroundLogProperties;

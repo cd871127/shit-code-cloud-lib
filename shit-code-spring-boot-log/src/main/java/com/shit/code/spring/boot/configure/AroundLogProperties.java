@@ -1,10 +1,10 @@
-package com.shit.code.cloud.log.autoconfigure;
+package com.shit.code.spring.boot.configure;
 
-import com.shit.code.cloud.log.LogLevel;
+import com.shit.code.spring.log.LogLevel;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-import static com.shit.code.cloud.log.autoconfigure.AroundLogProperties.CONFIG_PREFIX;
+import static com.shit.code.spring.boot.configure.AroundLogProperties.CONFIG_PREFIX;
 
 /**
  * @author Anthony

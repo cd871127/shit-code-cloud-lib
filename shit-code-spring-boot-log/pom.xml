@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>shit-code-cloud-logback</artifactId>
+    <artifactId>shit-code-spring-boot-log</artifactId>
 
     <dependencies>
         <dependency>
@@ -64,5 +64,4 @@
             <version>${spring.version}</version>
         </dependency>
     </dependencies>
-
 </project>

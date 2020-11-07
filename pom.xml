@@ -9,15 +9,14 @@
     <packaging>pom</packaging>
     <version>0.1.1</version>
     <modules>
-        <module>shit-code-cloud-logback</module>
         <module>shit-code-cloud-common</module>
         <module>shit-code-cloud-mybatis-spring-boot-starter</module>
-        <module>shit-code-cloud-spring-boot-starter</module>
         <module>shit-code-cloud-cache-spring-boot-starter</module>
         <module>shit-code-cloud-spring-boot-web-starter</module>
         <module>shit-code-cache-spring-boot-starter</module>
         <module>shit-code-redis-spring-boot-starter</module>
         <module>shit-code-spring-boot-starter</module>
+        <module>shit-code-spring-boot-log</module>
     </modules>
 
     <properties>
