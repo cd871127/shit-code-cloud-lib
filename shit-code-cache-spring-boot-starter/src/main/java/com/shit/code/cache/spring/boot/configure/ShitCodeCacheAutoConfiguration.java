@@ -4,6 +4,12 @@ import com.github.benmanes.caffeine.cache.CacheLoader;
 import com.github.benmanes.caffeine.cache.Caffeine;
 import com.github.benmanes.caffeine.cache.CaffeineSpec;
 import com.shit.code.cache.spring.ShitCodeCacheManager;
+import com.shit.code.cache.spring.WebServerInitializedListener;
+import com.shit.code.cache.spring.evict.Sender;
+import com.shit.code.cache.spring.evict.redis.DefaultReceiver;
+import com.shit.code.cache.spring.evict.redis.DefaultRedisReceiver;
+import com.shit.code.cache.spring.evict.redis.DefaultRedisSender;
+import com.shit.code.redis.spring.boot.configure.RedisAutoConfiguration;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
@@ -20,6 +26,7 @@ import org.springframework.core.io.ResourceLoader;
 import org.springframework.data.redis.cache.RedisCacheConfiguration;
 import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.JdkSerializationRedisSerializer;
 import org.springframework.data.redis.serializer.RedisSerializationContext;
 import org.springframework.util.CollectionUtils;
@@ -34,15 +41,15 @@ import java.util.List;
  **/
 @Slf4j
 @Configuration
-@EnableConfigurationProperties(CacheProperties.class)
-@AutoConfigureAfter(CacheAutoConfiguration.class)
+@EnableConfigurationProperties({ShitCodeCacheProperties.class, CacheProperties.class})
+@AutoConfigureAfter({CacheAutoConfiguration.class, RedisAutoConfiguration.class})
 public class ShitCodeCacheAutoConfiguration {
 
     @Bean
     @Primary
-    ShitCodeCacheManager shitCodeCacheManager(RedisCacheManager redisCacheManager, CaffeineCacheManager caffeineCacheManager) {
+    ShitCodeCacheManager shitCodeCacheManager(List<Sender> senders, RedisCacheManager redisCacheManager, CaffeineCacheManager caffeineCacheManager) {
         log.debug("初始化ShitCodeCacheManager");
-        return new ShitCodeCacheManager().setRedisCacheManager(redisCacheManager).setCaffeineCacheManager(caffeineCacheManager);
+        return new ShitCodeCacheManager().setRedisCacheManager(redisCacheManager).setCaffeineCacheManager(caffeineCacheManager).setSenders(senders);
     }
 
     @Bean
@@ -120,6 +127,26 @@ public class ShitCodeCacheAutoConfiguration {
         } else if (caffeine != null) {
             cacheManager.setCaffeine(caffeine);
         }
+    }
+
+    @Bean
+    public WebServerInitializedListener webServerInitializedListener() {
+        return new WebServerInitializedListener();
+    }
+
+    @Bean
+    public DefaultRedisSender defaultRedisSender(ShitCodeCacheProperties shitCodeCacheProperties, RedisTemplate<?, ?> redisTemplate) {
+        return new DefaultRedisSender(shitCodeCacheProperties.getNotice().getRedis().getChannel(), redisTemplate);
+    }
+
+    @Bean
+    public DefaultReceiver defaultReceiver(ShitCodeCacheManager shitCodeCacheManager) {
+        return new DefaultReceiver(shitCodeCacheManager);
+    }
+
+    @Bean
+    public DefaultRedisReceiver defaultRedisReceiver(ShitCodeCacheProperties shitCodeCacheProperties, DefaultReceiver defaultReceiver) {
+        return new DefaultRedisReceiver(shitCodeCacheProperties.getNotice().getRedis().getChannel(), defaultReceiver);
     }
 
 }

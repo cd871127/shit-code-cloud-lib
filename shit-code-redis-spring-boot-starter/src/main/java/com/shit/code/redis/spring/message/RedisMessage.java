@@ -1,7 +1,14 @@
 package com.shit.code.redis.spring.message;
 
-import lombok.Data;
+import brave.Span;
+import brave.Tracing;
+import brave.propagation.TraceContext;
+import com.shit.code.redis.spring.trace.Setter;
+import lombok.Getter;
+import lombok.ToString;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 /**
@@ -10,27 +17,43 @@ import java.util.UUID;
  * @author Anthony
  * @date 11/7/20
  **/
-@Data
+@ToString
 public class RedisMessage<T> {
 
+    @Getter
     private String messageId;
 
+    @Getter
+    @lombok.Setter
     private T body;
 
-    public RedisMessage() {
-    }
+    @Getter
+    private Map<String, String> traceContextMap;
 
-    public RedisMessage(String messageId) {
-        this(messageId, null);
+    public RedisMessage() {
+        init();
     }
 
     public RedisMessage(T body) {
-        this(UUID.randomUUID().toString().replaceAll("-", ""), body);
-    }
-
-    public RedisMessage(String messageId, T body) {
         this();
-        this.messageId = messageId;
         this.body = body;
     }
+
+    private void init() {
+        Span currentSpan = Tracing.currentTracer().currentSpan();
+        if (currentSpan == null) {
+            return;
+        }
+        TraceContext traceContext = currentSpan.context();
+        Map<String, String> traceContextMap = new HashMap<>(4);
+        TraceContext.Injector<Map<String, String>> injector = Tracing.current().propagation().injector(new Setter());
+        injector.inject(traceContext, traceContextMap);
+        this.traceContextMap = traceContextMap;
+        this.messageId = generateMessageId();
+    }
+
+    private String generateMessageId() {
+        return UUID.randomUUID().toString().replaceAll("-", "");
+    }
+
 }

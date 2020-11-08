@@ -1,5 +1,7 @@
 package com.shit.code.cache.spring;
 
+import com.shit.code.cache.spring.evict.EvictInfo;
+import com.shit.code.cache.spring.evict.Sender;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 import lombok.extern.slf4j.Slf4j;
@@ -11,6 +13,7 @@ import org.springframework.lang.NonNull;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.List;
 import java.util.concurrent.Callable;
 
 /**
@@ -27,6 +30,8 @@ public class ShitCodeCache extends AbstractValueAdaptingCache {
     private RedisCache redisCache;
 
     private CaffeineCache caffeineCache;
+
+    private List<Sender> senders;
 
     protected ShitCodeCache() {
         super(true);
@@ -99,17 +104,34 @@ public class ShitCodeCache extends AbstractValueAdaptingCache {
 
     @Override
     public void evict(@NonNull Object key) {
-        caffeineCache.evict(key);
-        log.debug("key:{},清理一级缓存成功", key);
-        redisCache.evict(key);
-        log.debug("key:{},清理二级缓存成功", key);
+        evictNoSend(key);
+        sendEvictInfo(key);
     }
 
     @Override
     public void clear() {
-        caffeineCache.clear();
-        log.debug("删除一级缓存成功");
+        clearNoSend();
+        sendEvictInfo(null);
+    }
+
+    public void evictNoSend(Object key) {
+        redisCache.evict(key);
+        log.debug("key:{},清理二级缓存成功", key);
+        caffeineCache.evict(key);
+        log.debug("key:{},清理一级缓存成功", key);
+    }
+
+    public void clearNoSend() {
         redisCache.clear();
         log.debug("删除二级缓存成功");
+        caffeineCache.clear();
+        log.debug("删除一级缓存成功");
     }
+
+    private void sendEvictInfo(Object key) {
+        //TODO 这里可以改成异步
+        EvictInfo evictInfo = new EvictInfo(getName(), key);
+        senders.forEach(sender -> sender.send(evictInfo));
+    }
+
 }

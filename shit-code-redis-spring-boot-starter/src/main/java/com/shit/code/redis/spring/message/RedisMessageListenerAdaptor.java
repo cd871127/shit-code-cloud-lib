@@ -21,14 +21,24 @@ public class RedisMessageListenerAdaptor extends MessageListenerAdapter {
 
     private final List<String> topics;
 
-    public RedisMessageListenerAdaptor(RedisMessageHandler<?> redisMessageHandler, String topic) {
-        this(redisMessageHandler, Collections.singletonList(topic));
+    public RedisMessageListenerAdaptor(String topic) {
+        this(Collections.singletonList(topic));
+    }
+
+    public RedisMessageListenerAdaptor(List<String> topics) {
+        super();
+        setDefaultListenerMethod(MessageListenerAdapter.ORIGINAL_DEFAULT_LISTENER_METHOD);
+        this.topics = topics;
+        setSerializer(getSerializer());
     }
 
     public RedisMessageListenerAdaptor(RedisMessageHandler<?> redisMessageHandler, List<String> topics) {
-        super(redisMessageHandler, MessageListenerAdapter.ORIGINAL_DEFAULT_LISTENER_METHOD);
-        this.topics = topics;
-        setSerializer(getSerializer());
+        this(topics);
+        setDelegate(redisMessageHandler);
+    }
+
+    public RedisMessageListenerAdaptor(RedisMessageHandler<?> redisMessageHandler, String topic) {
+        this(redisMessageHandler, Collections.singletonList(topic));
     }
 
     public List<String> getTopics() {
