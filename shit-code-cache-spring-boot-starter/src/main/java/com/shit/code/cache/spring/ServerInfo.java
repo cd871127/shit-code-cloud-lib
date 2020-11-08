@@ -3,7 +3,6 @@ package com.shit.code.cache.spring;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import java.util.List;
 import java.util.Set;
 
 /**
