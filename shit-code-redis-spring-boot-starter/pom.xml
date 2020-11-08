@@ -36,6 +36,11 @@
             <artifactId>shit-code-spring-boot-starter</artifactId>
             <version>0.2.0</version>
         </dependency>
+        <dependency>
+            <groupId>com.shit.code</groupId>
+            <artifactId>shit-code-common</artifactId>
+            <version>0.2.0</version>
+        </dependency>
     </dependencies>
 
 </project>
