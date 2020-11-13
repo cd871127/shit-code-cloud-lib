@@ -28,7 +28,7 @@ public class MethodAroundLogAspect extends AbstractAroundLogAspect {
     }
 
 
-    @Pointcut("execution(* com.shit.code.cloud.infrastructure..*.*(..))&&!within(com.sun..*)")
+    @Pointcut("execution(* com.shit.code.cloud..*.*(..)) && !within(com.sun..*)")
     public void publicMethodLog() {
     }
 
