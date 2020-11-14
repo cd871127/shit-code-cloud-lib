@@ -36,6 +36,7 @@
         <brave.version>5.12.3</brave.version>
         <lombok.version>1.18.16</lombok.version>
         <slf4j.version>1.7.30</slf4j.version>
+        <fastJson.version>1.2.5</fastJson.version>
 
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
         <jasypt-maven-plugin.version>3.0.3</jasypt-maven-plugin.version>

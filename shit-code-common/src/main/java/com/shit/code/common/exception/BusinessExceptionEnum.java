@@ -10,15 +10,14 @@ import lombok.extern.slf4j.Slf4j;
  **/
 @Slf4j
 @Getter
-public enum ShitCodeExceptionEnum implements HttpResponse {
+public enum BusinessExceptionEnum implements HttpResponse {
 
 
     /**
-     * 请求ok
+     *
      */
-    OK("00000000", "请求成功"),
-
-    FAILED("00000001", "请求失败:%s"),
+    SYSTEM_EXCEPTION("00000001", "系統异常:%s"),
+    BUSINESS_EXCEPTION("00000002", "系統异常:%s"),
 
     ERR_DATA_NOT_EXIST("00000002", "数据不存在,key:%s"),
 
@@ -35,7 +34,7 @@ public enum ShitCodeExceptionEnum implements HttpResponse {
     private final String code;
     private final String msg;
 
-    ShitCodeExceptionEnum(String code, String msg) {
+    BusinessExceptionEnum(String code, String msg) {
         this.code = code;
         this.msg = msg;
     }

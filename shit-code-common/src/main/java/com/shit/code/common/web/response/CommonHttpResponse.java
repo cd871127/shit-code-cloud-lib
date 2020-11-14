@@ -1,6 +1,5 @@
 package com.shit.code.common.web.response;
 
-import com.shit.code.common.exception.ShitCodeExceptionEnum;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
@@ -21,7 +20,7 @@ public class CommonHttpResponse extends GeneralHttpResponse<Object> {
 
     public CommonHttpResponse(Object data) {
         super(data);
-        setCode(ShitCodeExceptionEnum.OK.getCode());
-        setMsg(ShitCodeExceptionEnum.OK.getMsg());
+        setCode(HttpSuccessEnum.SUCCESS.getCode());
+        setMsg(HttpSuccessEnum.SUCCESS.getMsg());
     }
 }

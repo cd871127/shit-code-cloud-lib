@@ -1,8 +1,9 @@
 package com.shit.code.log.aspect;
 
-import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.reflect.MethodSignature;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.logging.LogLevel;
 
 import java.lang.reflect.Method;
@@ -15,7 +16,6 @@ import java.util.Set;
  * @author Anthony
  * @date 11/3/20
  **/
-@Slf4j
 public abstract class AbstractAroundLogAspect {
 
     /**
@@ -38,7 +38,6 @@ public abstract class AbstractAroundLogAspect {
         stringBuilder.append(joinPoint.getTarget().getClass().getName());
         stringBuilder.append("#");
         stringBuilder.append(method.getName());
-        String fullMethodName = stringBuilder.toString();
 
         List<Class<?>> paramTypeList = Arrays.asList(method.getParameterTypes());
 
@@ -56,10 +55,11 @@ public abstract class AbstractAroundLogAspect {
         logRecord.add(fullMethodSignature);
         try {
             LogLevel logLevel = getLogLevel(joinPoint, method);
-            printLog(logLevel, "\n{}\nPARAMETER:{}", fullMethodName, joinPoint.getArgs());
+            Logger logger = LoggerFactory.getLogger(joinPoint.getTarget().getClass());
+            printLog(logger, logLevel, "Method: {}, Parameter: {}", method.getName(), joinPoint.getArgs());
             long start = System.currentTimeMillis();
             Object result = joinPoint.proceed();
-            printLog(logLevel, "\n{}\nRESULT:{} TIME:{}ms", fullMethodName, result, System.currentTimeMillis() - start);
+            printLog(logger, logLevel, "{Method: {}, Time: {}ms, Result: {} ", method.getName(), System.currentTimeMillis() - start, result);
             return result;
         } finally {
             //移除记录
@@ -74,7 +74,7 @@ public abstract class AbstractAroundLogAspect {
      * @param message
      * @param args
      */
-    private void printLog(LogLevel logLevel, String message, Object... args) {
+    private void printLog(Logger log, LogLevel logLevel, String message, Object... args) {
         switch (logLevel) {
             case ERROR:
                 log.error(message, args);
